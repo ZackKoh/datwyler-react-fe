@@ -1,0 +1,13 @@
+.leftBtn {
+  margin-right: 16px;
+}
+
+.rightBtn {
+  margin-left: 16px;
+}
+
+.buttonGroup {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: row;
+}

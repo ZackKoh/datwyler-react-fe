@@ -9,7 +9,7 @@ import Customers from './routes/customers';
 import NewCustomer from './routes/new-customer';
 import CustomerList from './routes/customer-list';
 import CustomerDetails from './routes/customer-details';
-import NewLoan from './routes/new-loan';
+import NewLoanForm, { action as addLoanAction } from './routes/new-loan-form';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -42,10 +42,11 @@ const router = createBrowserRouter([
           },
           {
             path: ':customerId/new-loan',
-            element: <NewLoan />,
+            element: <NewLoanForm />,
             loader: async ({ params }) => {
               return fetch(`/api/customer-details/${params.customerId}`);
             },
+            action: addLoanAction,
           },
         ],
       },
