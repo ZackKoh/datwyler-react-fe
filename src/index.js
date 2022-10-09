@@ -4,6 +4,12 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import RootRoute from './routes/root';
+import Introduction from './routes/introduction';
+import Customers from './routes/customers';
+import NewCustomer from './routes/new-customer';
+import CustomerList from './routes/customer-list';
+import CustomerDetails from './routes/customer-details';
+import NewLoan from './routes/new-loan';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -11,6 +17,43 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootRoute />,
+    children: [
+      {
+        index: true,
+        element: <Introduction />,
+      },
+      {
+        path: 'customer',
+        element: <Customers />,
+        children: [
+          {
+            index: true,
+            element: <CustomerList />,
+            loader: async () => {
+              return fetch('/api/customers');
+            },
+          },
+          {
+            path: ':customerId',
+            element: <CustomerDetails />,
+            loader: async ({ params }) => {
+              return fetch(`/api/customer-details/${params.customerId}`);
+            },
+          },
+          {
+            path: ':customerId/new-loan',
+            element: <NewLoan />,
+            loader: async ({ params }) => {
+              return fetch(`/api/customer-details/${params.customerId}`);
+            },
+          },
+        ],
+      },
+      {
+        path: 'new-customer',
+        element: <NewCustomer />,
+      },
+    ],
   },
 ]);
 
