@@ -6,7 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RootRoute from './routes/root';
 import Introduction from './routes/introduction';
 import Customers from './routes/customers';
-import NewCustomer from './routes/new-customer';
+import NewCustomer, {
+  action as addCustomerAction,
+} from './routes/new-customer';
 import CustomerList from './routes/customer-list';
 import CustomerDetails from './routes/customer-details';
 import NewLoanForm, { action as addLoanAction } from './routes/new-loan-form';
@@ -53,6 +55,7 @@ const router = createBrowserRouter([
       {
         path: 'new-customer',
         element: <NewCustomer />,
+        action: addCustomerAction,
       },
     ],
   },
