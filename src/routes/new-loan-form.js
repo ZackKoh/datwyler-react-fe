@@ -74,7 +74,9 @@ const NewLoanForm = () => {
         isInvalid={isError}
         min={0}
       />
-      {isError ? <p>Please select an amount within limits</p> : null}
+      {isError ? (
+        <p className={styles.errorMsg}>Please select an amount within limits</p>
+      ) : null}
       <div className={styles.buttonGroup}>
         <Button
           variant="primary"
