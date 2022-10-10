@@ -3,7 +3,7 @@ import { useLoaderData, Link } from 'react-router-dom';
 const CustomerList = () => {
   const customers = useLoaderData();
 
-  return (
+  return customers.length !== 0 ? (
     <ul>
       {customers.map((customer) => (
         <li key={customer.id}>
@@ -11,6 +11,8 @@ const CustomerList = () => {
         </li>
       ))}
     </ul>
+  ) : (
+    <p>No Customers Found</p>
   );
 };
 
